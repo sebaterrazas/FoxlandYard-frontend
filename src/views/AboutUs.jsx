@@ -5,26 +5,22 @@ function AboutUs() {
 
   return (
     <>
-    <h1 class="titulo" > ¡Acerca del equipo!</h1>
+    <h1 className="titulo" > ¡Acerca del equipo! </h1>
 
-    <section class="flex-box-seba">
-        <p class="nombre"> Sebastián Terrazas </p>
-        <div class="contenedor-flexible">
-            <img class="avatar" src="../../src/assets/images/MrFox.jpg"></img>
-            <p class="descripcion"> Es una persona graciosa que le gusta patinar en hielo. </p>
+    <section className="flex-box-seba">
+        <p className="nombre"> Sebastián Terrazas </p>
+        <div className="contenedor-flexible">
+            <img className="avatar" src="../../src/assets/images/MrFox.jpg"></img>
+            <p className="descripcion"> Major Computación, Minor Eléctrica. <br/><br/>De vez en cuando adicto a Fantastic Mr Fox.</p>
         </div>
     </section>
 
-    <section class="flex-box-nacho">
-        <p class="nombre"> Ignacio Lillo </p>
-        <div class="contenedor-flexible">
-            <img class="avatar" src="../../src/assets/images/Ash1.jpg"></img>
-            <p class="descripcion"> Estudiante de la Universidad Católica de Chile. Major en Investigación Operativa con Minor en Tecnologías de la Información. Le gusta ver películas y jugar tenis. </p>
+    <section className="flex-box-nacho">
+        <p className="nombre"> Ignacio Lillo </p>
+        <div className="contenedor-flexible">
+            <img className="avatar" src="../../src/assets/images/Ash1.jpg"></img>
+            <p className="descripcion"> Estudiante de la Universidad Católica de Chile. Major en Investigación Operativa con Minor en Tecnologías de la Información. Le gusta ver películas y jugar tenis. </p>
         </div>
-    </section>
-
-    <section class="flex-box-botones">
-        <p> Aca van los botones para cambiar de páginas </p>
     </section>
 
     </>
