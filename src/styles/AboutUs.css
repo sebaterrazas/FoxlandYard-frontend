@@ -9,7 +9,7 @@ body {
 
 
 .flex-box-seba {
-    border-radius: 5px;
+    border-radius: 20px;
     border: 2px solid black;
     background: #ccdde2aa;
     padding: 20px;
@@ -42,7 +42,7 @@ body {
 
 
 .flex-box-nacho {
-    border-radius: 5px;
+    border-radius: 20px;
     border: 2px solid black;
     background: #ccdde2aa;
     padding: 20px;
@@ -77,9 +77,9 @@ body {
 
 
 .flex-box-botones {
-    border-radius: 5px;
+    border-radius: 20px;
     border: 2px solid black;
-    background: #ccdde2aa;
+    background: #e2d7ccaa;
     padding: 20px;
     
     /* flex-direction: column; */
@@ -138,6 +138,7 @@ body {
     font-size: 30px;
     color: #000000;
     font-family: 'Roboto', sans-serif; font-weight: 600;
+    margin-top: -5%;
   }
 
 

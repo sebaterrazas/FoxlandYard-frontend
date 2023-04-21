@@ -22,7 +22,7 @@ function AboutUs() {
         <p class="nombre"> Ignacio Lillo </p>
         <div class="contenedor-flexible">
             <img class="avatar" src="../../src/assets/images/Ash1.jpg"></img>
-            <p class="descripcion"> Es una persona que le gusta comer pasteles y montar a caballo. </p>
+            <p class="descripcion"> Estudiante de la Universidad Católica de Chile. Major en Investigación Operativa con Minor en Tecnologías de la Información. Le gusta ver películas y jugar tenis. </p>
         </div>
     </section>
 
