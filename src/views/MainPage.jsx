@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CustomButton from '../components/CustomButton';
 import Rules from '../components/Rules';
+import '../styles/MainPage.css'
 
 const MainPage = () => {
   const [showRules, setShowRules] = useState(false);
@@ -27,6 +28,49 @@ const MainPage = () => {
       <div className='flex-content'>
         <h1>Foxland Yard</h1>
         {gameSummary}
+      </div>
+
+      <div className='div-tabla'>
+        <h2> Records de los jugadores: </h2>
+
+        <table className='tabla-records'>
+          <tr>
+            <th>Jugador</th>
+            <th>Puntaje</th>
+            <th>Fecha</th>
+          </tr>
+          <tr>
+            <td>John Denver</td>
+            <td>1200</td>
+            <td>21/04/2023</td>
+          </tr>
+          <tr>
+            <td>Will Smith</td>
+            <td>1500</td>
+            <td>20/04/2023</td>
+          </tr>
+          <tr>
+            <td>Bob Ross</td>
+            <td>800</td>
+            <td>19/04/2023</td>
+          </tr>
+          <tr>
+            <td>Arthur Fleck</td>
+            <td>1100</td>
+            <td>18/04/2023</td>
+          </tr>
+          <tr>
+            <td>Charles Xavier</td>
+            <td>900</td>
+            <td>17/04/2023</td>
+          </tr>
+          <tr>
+            <td>Tony Stark</td>
+            <td>1300</td>
+            <td>16/04/2023</td>
+          </tr>
+	      </table>
+
       </div>
       
     </div>

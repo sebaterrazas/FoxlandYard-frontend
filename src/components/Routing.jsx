@@ -14,8 +14,8 @@ function Routing() {
             <div className="main-content">
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<MainPage />} />
-                    <Route path="/auth" element={<LandingPage />} />
+                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/auth" element={<MainPage />} />
                     <Route path="/about-us" element={<AboutUs />} />
                     <Route path="/rules" element={<Rules />} />
                 </Routes>

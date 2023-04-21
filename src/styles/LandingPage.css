@@ -35,7 +35,7 @@ h1 {
 
 
 #explicacion_juego {
-    font-size: 22px;
+    font-size: 23px;
     text-align: center;
     color: #000000;
     margin-bottom: 40px;
@@ -48,4 +48,30 @@ h1 {
     /* Estas dos líneas siguientes centran la imagen */
     display: block;
     margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.divo1 {
+    border-collapse: separate;
+    width: auto;
+
+    background-color: #ccdde2aa;
+
+    border-radius: 20px;
+    border: 2px solid black;
+    padding: 5px;
+}
+
+.divo2 {
+    border-collapse: separate;
+    width: auto;
+
+    background-color: #ccdde2aa;
+
+    border-radius: 20px;
+    border: 2px solid black;
+    padding: 5px;
+
+    margin-top: 30px;
+    margin-bottom: -30px;
 }

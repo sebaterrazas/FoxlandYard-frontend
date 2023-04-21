@@ -12,8 +12,8 @@ const Navbar = () => {
         </a>
         </div>
         <div className="links">
+            <CustomButton type='primary' href="/auth">Página Principal</CustomButton>
             <CustomButton type='primary' href="/about-us">Acerca de Nosotros</CustomButton>
-            <CustomButton type='primary' href="/auth">Iniciar Sesión</CustomButton>
         </div>
     </nav>
   );

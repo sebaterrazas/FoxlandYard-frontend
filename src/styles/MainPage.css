@@ -1,0 +1,18 @@
+.div-tabla {
+    border-collapse: separate;
+    width: 50%;
+
+    background-color: #c1d6d6;
+
+    border-radius: 20px;
+    border: 2px solid black;
+    padding: 5px;
+
+    margin-top: 10px;
+}
+
+.tabla-records {
+    display: block;
+    margin: 0 auto;
+    max-width: 295px;
+}
