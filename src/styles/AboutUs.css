@@ -1,0 +1,164 @@
+body {
+    margin: auto;
+    font-family: Arial, sans-serif;
+
+    background-image: url(../assets/images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.flex-box-seba {
+    border-radius: 5px;
+    border: 2px solid black;
+    background: #ccdde2aa;
+    padding: 20px;
+    
+    /* flex-direction: column; */
+    width: 92%;
+    margin: 0 auto; /* Esto es para centrar la flex-box */
+
+    flex-wrap: wrap;
+    
+
+    justify-content: center;
+
+    grid-template-columns: repeat(1, 1fr); /* Estas dos líneas son importantes */
+    justify-items: center; /* Estas dos líneas son importantes */
+
+    align-self: start;
+    align-items: center;
+
+    text-align: center;
+
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+
+.flex-box-nacho {
+    border-radius: 5px;
+    border: 2px solid black;
+    background: #ccdde2aa;
+    padding: 20px;
+    
+    /* flex-direction: column; */
+    width: 92%;
+    margin: 0 auto; /* Esto es para centrar la flex-box */
+
+    flex-wrap: wrap;
+    
+
+    justify-content: center;
+
+    grid-template-columns: repeat(1, 1fr); /* Estas dos líneas son importantes */
+    justify-items: center; /* Estas dos líneas son importantes */
+
+    align-self: start;
+    align-items: center;
+
+    text-align: center;
+
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 5%;
+
+}
+
+
+
+.flex-box-botones {
+    border-radius: 5px;
+    border: 2px solid black;
+    background: #ccdde2aa;
+    padding: 20px;
+    
+    /* flex-direction: column; */
+    width: 92%;
+    margin: 0 auto; /* Esto es para centrar la flex-box */
+
+    flex-wrap: wrap;
+    
+
+    justify-content: center;
+
+    grid-template-columns: repeat(1, 1fr); /* Estas dos líneas son importantes */
+    justify-items: center; /* Estas dos líneas son importantes */
+
+    align-self: start;
+    align-items: center;
+
+    text-align: center;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 5%;
+
+}
+
+
+
+.avatar {
+    box-shadow: 3px 3px 5px #000000;
+    border-radius: 60px;
+
+    padding: 5px;
+    max-width: 35%;
+
+    margin-top: -3%;
+    margin-bottom: 3%;
+    margin-left: 2%;
+}
+
+.nombre {
+    text-decoration: underline;
+    font-size: 50px;
+    color: #000000;
+    font-family: 'Roboto', sans-serif; font-weight: 550;
+
+    margin-top: auto;
+    margin-left: -57%;
+}
+
+
+.descripcion {
+    margin-left: 20px; /* ajusta este valor según sea necesario */
+    font-size: 30px;
+    color: #000000;
+    font-family: 'Roboto', sans-serif; font-weight: 600;
+  }
+
+
+.contenedor-flexible {
+    display: flex;
+    align-items: center;
+}
+
+
+.titulo {
+    color: #000000;
+    text-decoration: underline;
+    font-size: 60px;
+    
+    /* background: #ccdde2aa; */
+    /* border-radius: 5px; */
+    /* border: 2px solid black; */
+
+    margin-top: auto;
+    margin-bottom: 3%;
+
+    margin-left: 15%;
+    margin-right: 15%;
+}
