@@ -15,7 +15,7 @@ function LandingPage() {
         <section className="flex_como_jugar">
           <h2 id="como_jugar"> Resumen del juego y tablero: </h2>
           <p id="explicacion_juego">Este es un emocionante juego de estrategia, astucia y cooperación entre los jugadores. Conviértete en Mr Fox y evita ser capturado por los granjeros, o trabaja en equipo con otros granjeros para atrapar a Mr Fox.</p>
-          <img id="imagen2" src="../../src/assets/images/mockup_antiguo.jpg"></img>
+          <img id="imagen2" src="../../src/assets/images/mockup_final.jpg"></img>
         </section>
       </div>
 
