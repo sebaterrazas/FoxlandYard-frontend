@@ -19,6 +19,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin: 2rem;
 }
 
 .flex-box {
@@ -51,4 +52,10 @@ body {
 
     margin-top: 5%;
 
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

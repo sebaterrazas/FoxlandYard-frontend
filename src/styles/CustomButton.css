@@ -33,6 +33,14 @@
     background-color: var(--primary-color);
 }
 
+.custom-button.tertiary {
+    color: var(--tertiary-color);
+}
+
+.custom-button.tertiary:hover {
+    color: var(--black);
+}
+
 .custom-button.accept {
     color: green;
     background-color: var(--primary-color);

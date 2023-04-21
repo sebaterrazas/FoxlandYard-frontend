@@ -5,7 +5,7 @@ import MainPage from "../views/MainPage";
 import "../styles/main.css"
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-
+import Rules from "./Rules";
 
 function Routing() {
     return (
@@ -17,6 +17,7 @@ function Routing() {
                     <Route path="/" element={<MainPage />} />
                     <Route path="/auth" element={<LandingPage />} />
                     <Route path="/about-us" element={<AboutUs />} />
+                    <Route path="/rules" element={<Rules />} />
                 </Routes>
             </BrowserRouter>
             </div>

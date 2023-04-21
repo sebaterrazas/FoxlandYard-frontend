@@ -12,3 +12,8 @@
 a {
   text-decoration: none;
 }
+
+#logo {
+  max-width: 15rem;
+  height: auto;
+}

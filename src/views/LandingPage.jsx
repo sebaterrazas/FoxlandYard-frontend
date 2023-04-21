@@ -7,8 +7,8 @@ function LandingPage() {
     <div className="LandingPage">
         <h1> ¡Bienvenido a Foxland Yard! </h1>
         <img id="logo" src="../../src/assets/images/Logo1.png"></img>
+        
         <p>Gracias por visitar nuestro sitio web. Aquí podrás encontrar información útil sobre nuestro proyecto.</p>
-        <p>IMAGEN QUE TENGA RELACION CON ESTE</p>
 
         <Login />
 
