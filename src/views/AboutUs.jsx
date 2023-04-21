@@ -4,9 +4,6 @@ import '../styles/AboutUs.css'
 function AboutUs() {
 
   return (
-    // <div className="AboutUs">
-    //     <h1>Bienvenido a About Us</h1>
-    // </div>
     <>
     <h1 class="titulo" > ¡Acerca del equipo!</h1>
 
