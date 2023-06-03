@@ -12,44 +12,65 @@
     user-select: none;
 }
 
-.custom-button.primary {
+.custom-button.contained.primary {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    opacity: 0.7;
+}
+
+.custom-button.contained.primary:hover {
+    opacity: 1;
+}
+
+.custom-button.outlined.primary {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    border: 2px solid var(--secondary-color);
+    opacity: 0.7;
+}
+
+.custom-button.outlined.primary:hover {
+    opacity: 1;
+}
+
+.custom-button.text.secondary {
+    color: var(--secondary-color);
+    background-color: transparent;
+    opacity: 0.7;
+}
+
+.custom-button.text.secondary:hover {
+    opacity: 1;
+}
+
+.custom-button.outlined.secondary {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.custom-button.outlined.secondary:hover {
     color: var(--secondary-color);
     background-color: var(--primary-color);
     border: 2px solid var(--secondary-color);
 }
 
-.custom-button.primary:hover {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-}
-
-.custom-button.secondary {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    border: 2px solid var(--secondary-color);
-}
-
-.custom-button.secondary:hover {
-    color: var(--secondary-color);
-    background-color: var(--primary-color);
-    border: 2px solid var(--secondary-color);
-}
-
-.custom-button.tertiary {
+.custom-button.outlined.tertiary {
     color: var(--tertiary-color);
 }
 
-.custom-button.tertiary:hover {
+.custom-button.outlined.tertiary:hover {
     color: var(--black);
 }
 
-.custom-button.accept {
+.custom-button.outlined.accept {
     color: green;
     background-color: var(--primary-color);
     border: 2px solid green;
 }
 
-.custom-button.accept:hover {
+.custom-button.outlined.accept:hover {
     color: var(--primary-color);
     background-color: green;
 }

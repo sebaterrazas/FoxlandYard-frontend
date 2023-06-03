@@ -3,5 +3,5 @@
 ## Foxland Yard
 
 ## Para el terminal
-Para instalar dependencias (?): `yarn`
+Para instalar dependencias: `yarn install`
 Para correr el servidor: `yarn dev`

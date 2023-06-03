@@ -20,9 +20,13 @@ nav div {
 }
 
 .links {
-    flex: 1;
+    flex: 3;
     display: flex;
     justify-content: flex-end;
+}
+
+.links > *:not(:last-child) {
+    margin-left: 5rem;
 }
 
 .big-logo {

@@ -12,8 +12,11 @@ const Navbar = () => {
         </a>
         </div>
         <div className="links">
-            <CustomButton type='primary' href="/auth">Página Principal</CustomButton>
-            <CustomButton type='primary' href="/about-us">Acerca de Nosotros</CustomButton>
+            <CustomButton type='secondary' mode='text' href="/games">Juegos</CustomButton>
+            <CustomButton type='secondary' mode='text' href="/auth">Reglas</CustomButton>
+            <CustomButton type='secondary' mode='text' href="/about-us">Acerca de Nosotros</CustomButton>
+            <CustomButton type='primary' mode='outlined' href="/about-us">Iniciar Sesión</CustomButton>
+            <CustomButton type='primary' mode='contained' href="/about-us">Regitrarse</CustomButton>
         </div>
     </nav>
   );

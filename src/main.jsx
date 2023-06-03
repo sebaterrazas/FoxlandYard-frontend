@@ -48,12 +48,20 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-
+import { AuthProvider } from './contexts/AuthContext';
+import { CharacterProvider } from './contexts/CharacterContext';
+import { GameProvider } from './contexts/GameContext';
 import Routing from "./components/Routing";
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Routing />
+    <AuthProvider>
+      <CharacterProvider>
+        <GameProvider>
+          <Routing />
+        </GameProvider>
+      </CharacterProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
