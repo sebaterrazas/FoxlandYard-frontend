@@ -20,5 +20,9 @@
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.0.0",
     "vite": "^4.2.0"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/IIC2513/grupo-Los-Atletas-de-la-Risa-frontend.git",
+  "author": "Nacho <ignacio.lillo@uc.cl>",
+  "license": "MIT"
 }
