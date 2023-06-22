@@ -1,0 +1,68 @@
+.movement-card {
+    display: flex;
+    flex-direction: row;
+    height: 3.09rem;
+    border: 1px solid black;
+    border-radius: 0.6rem;
+    width: 5rem;
+    align-items: center;
+    background-color: var(--background-color);
+    justify-self: end;
+}
+
+.movement-card.dynamic {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.movement-card.empty {
+    opacity: 0.5;
+}
+
+.movement-card.selected {
+    opacity: 1;
+}
+
+.movement-card.dynamic:hover {
+    opacity: 1;
+}
+
+.movement-card.walk {
+    background-color: var(--walk-color);
+}
+
+.movement-card.bike {
+    background-color: var(--bike-color);
+}
+
+.movement-card.car {
+    background-color: var(--car-color);
+}
+
+.movement-card .card-content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.movement-card .card-content .card-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.movement-card .card-content img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+
+    -webkit-user-select: none; /* Chrome, Safari y Opera */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer y Edge */
+    user-select: none;         /* Estándar CSS3 */
+    -webkit-user-drag: none;   /* Evitar el arrastre en Chrome, Safari y Opera */
+    -khtml-user-drag: none;    /* Evitar el arrastre en Konqueror */
+}
+

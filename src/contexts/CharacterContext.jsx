@@ -5,6 +5,8 @@ const CharacterContext = createContext();
 
 const CharacterProvider = ({ children }) => {
   const [characters, setCharacters] = useState([]);
+  const [character, setCharacter] = useState(null);
+  const [selectedMove, setSelectedMove] = useState(null);
 
   const listCharacters = async () => {
     try {
@@ -96,25 +98,27 @@ const CharacterProvider = ({ children }) => {
       return response.data;
     } catch (error) {
       console.error(`Error al mover personaje ${characterId}:`, error);
-      return null;
+      return `Error al mover personaje ${characterId}:\n` + error;
     }
   };
 
   return (
     <CharacterContext.Provider
-      value={
-        { 
-            characters,
-            listCharacters, 
-            createCharacter,
-            getCharacter,
-            useHelp,
-            grabFood,
-            placeTrap,
-            getDetails,
-            moveCharacter,
-        }
-        }
+      value={{ 
+        characters,
+        listCharacters, 
+        createCharacter,
+        getCharacter,
+        useHelp,
+        grabFood,
+        placeTrap,
+        getDetails,
+        moveCharacter,
+        setCharacter,
+        character,
+        setSelectedMove,
+        selectedMove
+      }}
     >
       {children}
     </CharacterContext.Provider>

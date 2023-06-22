@@ -3,6 +3,13 @@
   --secondary-color: #D73A31;
   --tertiary-color: #423a3abd;
   --white: #fff;
+  --black: #000;
+  --success: #28a745;
+  --error: #dc3545;
+  --walk-color: #ebdf2c;
+  --bike-color: #24da27;
+  --car-color: #f74545;
+  --background-color: aliceblue;;
 }
 
 #root {
