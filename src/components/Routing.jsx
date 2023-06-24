@@ -25,7 +25,7 @@ function Routing() {
             <Route path="/rules" element={<Rules />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/games" element={<GamesList />} />
-            <Route path="/game/:gameId" element={<GamePage />} />
+            <Route path="/games/:gameId" element={<GamePage />} />
           </Routes>
         </BrowserRouter>
         </div>

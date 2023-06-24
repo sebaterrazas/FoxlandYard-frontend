@@ -5,6 +5,9 @@ const GameContext = createContext();
 
 const GameProvider = ({ children }) => {
   const [games, setGames] = useState([]);
+  const [game, setGame] = useState(null);
+  const [mrFox, setMrFox] = useState(null);
+  const [refresh, setRefresh] = useState(false);
 
   const listGames = async () => {
     try {
@@ -18,6 +21,16 @@ const GameProvider = ({ children }) => {
   const getGame = async (gameId) => {
     try {
       const response = await api.get(`/games/${gameId}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error al obtener detalles del juego ${gameId}:`, error);
+      return null;
+    }
+  };
+
+  const getMrFoxMovements = async (gameId) => {
+    try {
+      const response = await api.get(`/games/${gameId}/mr-fox-movements`);
       return response.data;
     } catch (error) {
       console.error(`Error al obtener detalles del juego ${gameId}:`, error);
@@ -79,13 +92,20 @@ const GameProvider = ({ children }) => {
     <GameContext.Provider
         value={{
             games,
+            game,
+            setGame,
             listGames,
             getGame,
+            getMrFoxMovements,
             createGame,
             getGameBoard,
             createGameBoard,
             getGameCharacters,
             nextTurn,
+            setMrFox,
+            mrFox,
+            setRefresh,
+            refresh,
         }}
     >
       {children}
