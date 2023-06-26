@@ -8,6 +8,8 @@ const GameProvider = ({ children }) => {
   const [game, setGame] = useState(null);
   const [mrFox, setMrFox] = useState(null);
   const [refresh, setRefresh] = useState(false);
+  const [characters, setCharacters] = useState([]);
+  // const [users, setUsers] = useState([]);
 
   const listGames = async () => {
     try {
@@ -68,13 +70,25 @@ const GameProvider = ({ children }) => {
     }
   };
   
+  // const getGameCharacters = async (gameId) => {
+  //   try {
+  //     const response = await api.get(`/games/${gameId}/characters`);
+  //     console.log("==========================================")
+  //     console.log("Response:", response.data)
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error(`Error al obtener personajes del juego ${gameId}:`, error);
+  //     return null;
+  //   }
+  // };
+
   const getGameCharacters = async (gameId) => {
     try {
+      // Lógica para obtener los personajes del juego usando el ID proporcionado
       const response = await api.get(`/games/${gameId}/characters`);
-      return response.data;
+      setCharacters(response.data);
     } catch (error) {
-      console.error(`Error al obtener personajes del juego ${gameId}:`, error);
-      return null;
+      console.error(`Error al obtener los personajes del juego ${gameId}:`, error);
     }
   };
   
@@ -106,6 +120,10 @@ const GameProvider = ({ children }) => {
             mrFox,
             setRefresh,
             refresh,
+            characters,
+            setCharacters,
+            // users,
+            // setUsers,
         }}
     >
       {children}

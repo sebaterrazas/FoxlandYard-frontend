@@ -5,7 +5,7 @@ function AboutUs() {
 
   return (
     <>
-    <h1 className="titulo" > ¡Acerca del equipo! </h1>
+    <h1 className="titulo"> ¡Acerca del equipo! </h1>
 
     <section className="flex-box-seba">
         <p className="nombre"> Sebastián Terrazas </p>
@@ -19,7 +19,7 @@ function AboutUs() {
         <p className="nombre"> Ignacio Lillo </p>
         <div className="contenedor-flexible">
             <img className="avatar" src="../../src/assets/images/characters/Ash1.jpg"></img>
-            <p className="descripcion"> Estudiante de la Universidad Católica de Chile. Major en Investigación Operativa con Minor en Tecnologías de la Información. <br/><br/>Le gusta ver películas y jugar tenis. </p>
+            <p className="descripcion"> Major en Investigación Operativa, Minor en Tecnologías de la Información. <br/><br/>De vez en cuando adicto al crack.</p>
         </div>
     </section>
 

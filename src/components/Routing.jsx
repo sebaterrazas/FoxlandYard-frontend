@@ -6,6 +6,7 @@ import MainPage from "../views/MainPage";
 import AuthPage from "../views/Authentication/AuthPage";
 import GamesList from "../views/Games/GamesList";
 import GamePage from "../views/Games/GamePage";
+import CharactersGameList from "../views/Characters/CharactersList";
 
 import "../styles/main.css"
 import Navbar from "./Navbar";
@@ -26,6 +27,8 @@ function Routing() {
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/games" element={<GamesList />} />
             <Route path="/games/:gameId" element={<GamePage />} />
+            <Route path="/games/:gameId/characters" element={<CharactersGameList />} />
+            {/* <Route path="/games/:gameId/board" element={<GamePage />} /> */}
           </Routes>
         </BrowserRouter>
         </div>

@@ -9,11 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@koa/cors": "^4.0.0",
     "axios": "^1.4.0",
+    "koa": "^2.14.2",
+    "koa-body": "^6.0.1",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^12.0.0",
+    "nodemon": "^2.0.22",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.10.0",
+    "sequelize": "^6.32.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
