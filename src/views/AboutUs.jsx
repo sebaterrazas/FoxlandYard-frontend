@@ -19,7 +19,7 @@ function AboutUs() {
         <p className="nombre"> Ignacio Lillo </p>
         <div className="contenedor-flexible">
             <img className="avatar" src="../../src/assets/images/characters/Ash1.jpg"></img>
-            <p className="descripcion"> Major en Investigación Operativa, Minor en Tecnologías de la Información. <br/><br/>De vez en cuando adicto al crack.</p>
+            <p className="descripcion"> Major Investigación Operativa, Minor Tecnologías de la Información. <br/><br/>De vez en cuando adicto al crack.</p>
         </div>
     </section>
 

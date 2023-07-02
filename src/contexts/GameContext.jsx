@@ -8,7 +8,7 @@ const GameProvider = ({ children }) => {
   const [game, setGame] = useState(null);
   const [mrFox, setMrFox] = useState(null);
   const [refresh, setRefresh] = useState(false);
-  const [characters, setCharacters] = useState([]);
+  const [characters_game, setCharacters_game] = useState([]);
   // const [users, setUsers] = useState([]);
 
   const listGames = async () => {
@@ -86,7 +86,7 @@ const GameProvider = ({ children }) => {
     try {
       // Lógica para obtener los personajes del juego usando el ID proporcionado
       const response = await api.get(`/games/${gameId}/characters`);
-      setCharacters(response.data);
+      setCharacters_game(response.data);
     } catch (error) {
       console.error(`Error al obtener los personajes del juego ${gameId}:`, error);
     }
@@ -120,8 +120,8 @@ const GameProvider = ({ children }) => {
             mrFox,
             setRefresh,
             refresh,
-            characters,
-            setCharacters,
+            characters_game,
+            setCharacters_game,
             // users,
             // setUsers,
         }}
