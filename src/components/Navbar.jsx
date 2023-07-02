@@ -6,6 +6,7 @@ import "../styles/Navbar.css"
 import Logo from "../assets/images/big-logo.png"
 import FamilyMembers from './Game/FamilyMembers';
 import AvailableMovements from './Game/AvailableMovements';
+import CurrentTurn from './Game/CurrentTurn';
 
 const Navbar = () => {
   const { game } = useContext(GameContext);
@@ -20,7 +21,8 @@ const Navbar = () => {
         <div className="links">
             <FamilyMembers />
             <AvailableMovements />
-            <CustomButton type='primary' mode='contained' href="/about-us">Salirse del Juego</CustomButton>
+            <CurrentTurn />
+            <CustomButton type='primary' mode='contained' href="/">Salirse del Juego</CustomButton>
         </div>
     </nav>
   );

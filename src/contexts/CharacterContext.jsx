@@ -87,25 +87,12 @@ const CharacterProvider = ({ children }) => {
       return null;
     }
   };
-  
-  const moveCharacter = async (characterId, movementType, destinationNodeId, useHelp) => {
-    try {
-      const response = await api.patch(`/characters/${characterId}/move-character`, {
-        movementType,
-        destinationNodeId,
-        useHelp,
-      });
-      return response.data;
-    } catch (error) {
-      console.error(`Error al mover personaje ${characterId}:`, error);
-      return `Error al mover personaje ${characterId}:\n` + error;
-    }
-  };
 
   return (
     <CharacterContext.Provider
       value={{ 
         characters,
+        setCharacters,
         listCharacters, 
         createCharacter,
         getCharacter,
@@ -113,7 +100,6 @@ const CharacterProvider = ({ children }) => {
         grabFood,
         placeTrap,
         getDetails,
-        moveCharacter,
         setCharacter,
         character,
         setSelectedMove,

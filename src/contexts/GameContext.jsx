@@ -8,6 +8,8 @@ const GameProvider = ({ children }) => {
   const [game, setGame] = useState(null);
   const [mrFox, setMrFox] = useState(null);
   const [refresh, setRefresh] = useState(false);
+  const [gameStatus, setGameStatus] = useState(null);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   const listGames = async () => {
     try {
@@ -28,16 +30,6 @@ const GameProvider = ({ children }) => {
     }
   };
 
-  const getMrFoxMovements = async (gameId) => {
-    try {
-      const response = await api.get(`/games/${gameId}/mr-fox-movements`);
-      return response.data;
-    } catch (error) {
-      console.error(`Error al obtener detalles del juego ${gameId}:`, error);
-      return null;
-    }
-  };
-
   const createGame = async () => {
     try {
       const response = await api.post('/games');
@@ -47,40 +39,15 @@ const GameProvider = ({ children }) => {
       return null;
     }
   };
-
-  const getGameBoard = async (gameId) => {
-    try {
-      const response = await api.get(`/games/${gameId}/board`);
-      return response.data;
-    } catch (error) {
-      console.error(`Error al obtener el tablero del juego ${gameId}:`, error);
-      return null;
-    }
-  };
   
-  const createGameBoard = async (gameId) => {
+  const performTurn = async (gameId, characterId, movementType, destinationNodeId, useHelp) => {
     try {
-      const response = await api.post(`/games/${gameId}/board`);
-      return response.data;
-    } catch (error) {
-      console.error(`Error al crear el tablero del juego ${gameId}:`, error);
-      return null;
-    }
-  };
-  
-  const getGameCharacters = async (gameId) => {
-    try {
-      const response = await api.get(`/games/${gameId}/characters`);
-      return response.data;
-    } catch (error) {
-      console.error(`Error al obtener personajes del juego ${gameId}:`, error);
-      return null;
-    }
-  };
-  
-  const nextTurn = async (gameId) => {
-    try {
-      const response = await api.patch(`/games/${gameId}/next-turn`);
+      const response = await api.patch(`/games/${gameId}/perform-turn`, {
+        characterId,
+        movementType,
+        destinationNodeId,
+        useHelp,
+      });
       return response.data;
     } catch (error) {
       console.error(`Error al avanzar al siguiente turno en el juego ${gameId}:`, error);
@@ -95,17 +62,17 @@ const GameProvider = ({ children }) => {
             game,
             setGame,
             listGames,
+            performTurn,
             getGame,
-            getMrFoxMovements,
             createGame,
-            getGameBoard,
-            createGameBoard,
-            getGameCharacters,
-            nextTurn,
             setMrFox,
             mrFox,
             setRefresh,
             refresh,
+            gameStatus,
+            setGameStatus,
+            setIsGameOver,
+            isGameOver,
         }}
     >
       {children}
