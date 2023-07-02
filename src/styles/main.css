@@ -45,7 +45,7 @@ body::before {
 .flex-box {
     border-radius: 20px;
     border: 2px solid black;
-    background: #e2d7ccc1;
+    background: #d4cabfe0;
     padding: 20px;
     
     /* flex-direction: column; */
