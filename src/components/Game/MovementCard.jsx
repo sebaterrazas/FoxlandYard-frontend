@@ -7,9 +7,11 @@ import Bike from '../../assets/images/icons/bike.png'
 import Car from '../../assets/images/icons/sidecar.png'
 
 import { CharacterContext } from '../../contexts/CharacterContext';
+import { GameContext } from '../../contexts/GameContext';
 
 function MovementCard({ type, number, isStatic }) {
     const { selectedMove, setSelectedMove } = useContext(CharacterContext);
+    const { isGameOver } = useContext(GameContext);
 
     let Image = <></>;
     if (type === 'walk') Image = <img src={Walk} />;
@@ -17,13 +19,14 @@ function MovementCard({ type, number, isStatic }) {
     if (type === 'car') Image = <img src={Car} />;
 
     const handleClick = () => {
+        if (isGameOver) return;
         if (isStatic) return;
         if (type === selectedMove) setSelectedMove(null);
         else setSelectedMove(type);
     }
 
-    const selected = (selectedMove === type || (isStatic && type !== 'empty')) ? 'selected' : '';
-    const staticClass = isStatic ? 'static' : 'dynamic';
+    const selected = (selectedMove === type || (isStatic && type !== 'empty')) && !isGameOver ? 'selected' : '';
+    const staticClass = (isStatic || isGameOver) ? 'static' : 'dynamic';
     return (
         <a className={`movement-card ${type} ${selected} ${staticClass}`} onClick={handleClick}>
             <div className='card-content'>
