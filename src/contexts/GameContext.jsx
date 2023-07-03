@@ -31,9 +31,12 @@ const GameProvider = ({ children }) => {
     }
   };
 
-  const createGame = async () => {
+  const createGame = async (userId, characterName) => {
     try {
-      const response = await api.post('/games');
+      const response = await api.post('/games', {
+        userId,
+        characterName
+      });
       return response.data;
     } catch (error) {
       console.error('Error al crear un juego:', error);
