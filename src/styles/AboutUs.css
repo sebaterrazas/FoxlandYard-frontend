@@ -1,8 +1,8 @@
 .flex-box-seba {
     border-radius: 20px;
     border: 2px solid black;
-    background: #ccdde2aa;
-    /* background: var(--transparent-background); */
+    /* background: #ccdde2aa; */
+    background: var(--transparent-background);
     padding: 20px;
     
     /* flex-direction: column; */
@@ -35,7 +35,8 @@
 .flex-box-nacho {
     border-radius: 20px;
     border: 2px solid black;
-    background: #ccdde2aa;
+    /* background: #ccdde2aa; */
+    background: var(--transparent-background);
     padding: 20px;
     
     /* flex-direction: column; */
