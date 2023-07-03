@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import api from '../api'; // Importar tu instancia de Axios
+import api from '../api';
 
 const AuthContext = createContext();
 
@@ -8,10 +8,13 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
   const [token, setToken] = useState(localStorage.getItem('token') || null);
 
+  if (token) {
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  }
+
   const signIn = async (email, password) => {
     try {
       const response = await api.post('/login', { email, password });
-      api.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
       setToken(response.data.access_token);
       setUser(response.data.user);
       return false;
