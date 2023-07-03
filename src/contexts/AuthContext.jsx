@@ -60,6 +60,7 @@ const AuthProvider = ({ children }) => {
       signOut,
       setIsSignUp,
       isSignUp,
+      token
     }}>
       {children}
     </AuthContext.Provider>
