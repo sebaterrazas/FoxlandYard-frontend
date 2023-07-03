@@ -4,11 +4,20 @@ import { GameContext } from '../../contexts/GameContext';
 import '../../styles/List_styles.css';
 
 const GamesList = () => {
-  const { games, listGames } = useContext(GameContext);
+  const { games, listGames, createGame } = useContext(GameContext);
 
   useEffect(() => {
     listGames();
   }, []);
+
+  const handleCreateGame = async (userId, characterName) => {
+    try {
+      const response = await createGame(userId, characterName);
+      // Realiza alguna acción adicional con la respuesta, si es necesario
+    } catch (error) {
+      console.error('Error al crear un juego:', error);
+    }
+  };
 
   return (
     <div>
@@ -29,7 +38,7 @@ const GamesList = () => {
         </div>
       ))}
       <div className="button-container">
-        <button className="button2" onClick={() => window.location.href = `/games`}>Crear un nuevo juego</button> {/* Aún no funciona */}
+        <button className="button2" onClick={() => handleCreateGame(userId, characterName)}>Crear un nuevo juego</button> {/* Aún no funciona */}
       </div>
   </div>
   );

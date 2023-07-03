@@ -25,7 +25,6 @@ const GameProvider = ({ children }) => {
     try {
       console.log('api key', api.defaults.headers.common['Authorization']);
       const response = await api.get(`/games/${gameId}`);
-      // console.log("RESPUESTA:", response.data);
       return response.data;
     } catch (error) {
       console.error(`Error al obtener detalles del juego ${gameId}:`, error);
