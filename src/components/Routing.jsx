@@ -7,6 +7,8 @@ import GamesList from "../views/Games/GamesList";
 import GamePage from "../views/Games/GamePage";
 import CharactersGameList from "../views/Characters/CharactersList";
 import AllCharacters from "../views/Characters/AllCharacters";
+import ViewUser from "../views/Users/ViewUser";
+
 
 import "../styles/main.css"
 import Navbar from "./Navbar";
@@ -28,6 +30,7 @@ function Routing() {
             <Route path="/games/:gameId" element={<GamePage />} />
             <Route path="/games/:gameId/characters" element={<CharactersGameList />} />
             <Route path="/characters" element={<AllCharacters />} />
+            <Route path="/user" element={<ViewUser />} />
           </Routes>
         </div>
         <Footer />

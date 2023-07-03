@@ -13,7 +13,10 @@ const CharactersGameList = () => {
   const { getGame } = useContext(GameContext);
   const { characters, setCharacters, createCharacter } = useContext(CharacterContext);
 
-  const [game, setGame] = useState(null); // Agregamos un estado para almacenar el objeto de juego
+  const [isMrFox, setIsMrFox] = useState(false)
+  const [isMrBunce, setIsMrBunce] = useState(false)
+  const [isMrBean, setIsMrBean] = useState(false)
+  const [isMrBoggis, setIsMrBoggis] = useState(false)
 
   useEffect(() => {  
     getGame(gameId).then((res) => {
@@ -43,18 +46,11 @@ const CharactersGameList = () => {
       
       // Realizar cualquier acción adicional después de crear la instancia de personaje
       console.log('Se ha creado la instancia de personaje con éxito');
-      window.location.reload(); // Para actualizar la página :)
+      window.location.reload();
     } catch (error) {
+      // Manejar cualquier error que ocurra
       console.error('Error al unirse al juego:', error);
     }
-  };
-
-  if (!game) {
-    return <div>Loading...</div>; // Agregamos una condición para mostrar un mensaje de carga mientras se obtiene el objeto de juego
-  }
-
-  const isCharacterInGame = (characterName) => {
-    return game.Characters.some((character) => character.name === characterName);
   };
 
   return (
@@ -90,28 +86,6 @@ const CharactersGameList = () => {
           )}
         </div>
       )}
-      {/* <div className="game-item">
-        {!isMrFox && (
-        <button onClick={() => {
-          handleJoinGame("Mr. Fox");
-          location.reload();}}>Únete como Mr. Fox</button>
-        )}
-        {!isMrBunce && (
-        <button onClick={() => {
-          handleJoinGame("Mr. Bunce");
-          location.reload();}}>Únete como Mr. Bunce</button>
-        )}
-        {!isMrBean && (
-        <button onClick={() => {
-          handleJoinGame("Mr. Bean");
-          location.reload();}}>Únete como Mr. Bean</button>
-        )}
-        {!isMrBoggis && (
-        <button onClick={() => {
-          handleJoinGame("Mr. Boggis");
-          location.reload();}}>Únete como Mr. Boggis</button>
-        )}
-      </div> */}
 
       <div className="button-container">
         <button className="button2" onClick={() => (window.location.href = '/games')}>Volver a Juegos</button>

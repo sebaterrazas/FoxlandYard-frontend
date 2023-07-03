@@ -14,6 +14,8 @@ const GameProvider = ({ children }) => {
 
   const listGames = async () => {
     try {
+      console.log('api key', api.defaults.headers.common['Authorization']);
+      console.log('localStorage', localStorage.getItem('token'));
       const response = await api.get('/games');
       setGames(response.data);
     } catch (error) {
@@ -24,6 +26,7 @@ const GameProvider = ({ children }) => {
   const getGame = async (gameId) => {
     try {
       console.log('api key', api.defaults.headers.common['Authorization']);
+      console.log('localStorage', localStorage.getItem('token'));
       const response = await api.get(`/games/${gameId}`);
       return response.data;
     } catch (error) {
@@ -36,7 +39,7 @@ const GameProvider = ({ children }) => {
     try {
       const response = await api.post('/games', {
         userId,
-        characterName
+        characterName,
       });
       return response.data;
     } catch (error) {

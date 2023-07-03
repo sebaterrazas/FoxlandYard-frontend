@@ -1,10 +1,19 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState  } from 'react';
 import { GameContext } from '../../contexts/GameContext';
+import { CharacterContext } from '../../contexts/CharacterContext';
+import { AuthContext } from '../../contexts/AuthContext';
+
 
 import '../../styles/List_styles.css';
 
 const GamesList = () => {
+  const { user, token } = useContext(AuthContext);
   const { games, listGames, createGame } = useContext(GameContext);
+  const { characters, setCharacters, createCharacter } = useContext(CharacterContext);
+
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedCharacter, setSelectedCharacter] = useState('');
 
   useEffect(() => {
     listGames();
@@ -12,10 +21,36 @@ const GamesList = () => {
 
   const handleCreateGame = async (userId, characterName) => {
     try {
-      const response = await createGame(userId, characterName);
-      // Realiza alguna acción adicional con la respuesta, si es necesario
+      const gameId = await createGame(userId, characterName);  // Realiza alguna acción adicional con la respuesta, si es necesario
+      window.location.reload(); // Para actualizar la página :)
+      return gameId;
     } catch (error) {
       console.error('Error al crear un juego:', error);
+      return null;
+    }
+  };
+
+  const handleJoinGame = async (gameId, characterName) => {
+    try {
+      // Llamar a la función createCharacter para crear la instancia de personaje
+      await createCharacter(gameId, user.id, characterName);   
+      
+      // Realizar cualquier acción adicional después de crear la instancia de personaje
+      console.log('Se ha creado la instancia de personaje con éxito');
+      window.location.reload();
+    } catch (error) {
+      // Manejar cualquier error que ocurra
+      console.error('Error al unirse al juego:', error);
+    }
+  };
+
+  const handleCharacterSelection = async (character) => {
+    setSelectedCharacter(character);
+    setShowPopup(false);
+
+    const gameId = await handleCreateGame(user.id, character);
+    if (gameId) {
+      handleJoinGame(gameId, character);
     }
   };
 
@@ -38,9 +73,19 @@ const GamesList = () => {
         </div>
       ))}
       <div className="button-container">
-        <button className="button2" onClick={() => handleCreateGame(userId, characterName)}>Crear un nuevo juego</button> {/* Aún no funciona */}
+        <button className="button2" onClick={() => setShowPopup(true)}>Crear un nuevo juego</button>
       </div>
-  </div>
+
+      {showPopup && (
+        <div className="popup">
+          <h2>Selecciona un personaje:</h2>
+          <button onClick={() => handleCharacterSelection('Mr. Fox')}>Mr. Fox</button>
+          <button onClick={() => handleCharacterSelection('Mr. Bunce')}>Mr. Bunce</button>
+          <button onClick={() => handleCharacterSelection('Mr. Bean')}>Mr. Bean</button>
+          <button onClick={() => handleCharacterSelection('Mr. Boggis')}>Mr. Boggis</button>
+        </div>
+      )}
+    </div>
   );
 };
 
