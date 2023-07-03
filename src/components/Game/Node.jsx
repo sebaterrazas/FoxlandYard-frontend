@@ -7,6 +7,13 @@ function Node({ id, type }) {
     const { setRefresh, performTurn, setGameStatus, isGameOver } = useContext(GameContext);
     const { character, selectedMove, setSelectedMove } = useContext(CharacterContext);
 
+    if (!character) {
+        return (
+            <a className={`node node${id} ${type}`} >
+            </a>
+        );
+    }
+
     const gameId = character.gameId;
     const characterId = character.id;
 

@@ -5,7 +5,7 @@ import MovementCard from './MovementCard';
 
 
 function AvailableMovements(props) {
-    const { character, setCharacter, getCharacter } = useContext(CharacterContext);
+    const { character } = useContext(CharacterContext);
 
     return (
         <div className='navbar-container'>

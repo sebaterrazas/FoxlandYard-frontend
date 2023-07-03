@@ -70,20 +70,20 @@ function GamePage() {
                 setNodes(nodes);
                 setMrFoxMovements(res.game.MrFoxMovements);
                 setCharacters(res.game.Characters);
-                setCharactersElements(res.game.Characters.map((character) => {
-                    if (character.name === 'Mr. Fox') {
-                        setMrFox(character);
-                        if (character.userId !== user.id && !res.game.winner) {
+                setCharactersElements(res.game.Characters.map((char) => {
+                    if (char.name === 'Mr. Fox') {
+                        setMrFox(char);
+                        if (char.userId !== user.id && !res.game.winner) {
                            return;
                         }
                         /* if (character.name !== res.game.current_turn && !res.game.winner) {
                             return;
                          } */
                     }
-                    if (character.userId === user.id) {
-                        setCharacter(character);
+                    if (char.userId === user.id) {
+                        setCharacter(char);
                     }
-                    return <Character key={character.id} name={character.name} nodeId={character.nodeId} />;
+                    return <Character key={char.id} name={char.name} nodeId={char.nodeId} />;
                 }));
             }).catch((err) => {
                 console.log(err);
@@ -94,15 +94,19 @@ function GamePage() {
                 setIsGameOver(true);
             }
             setRefresh(false);
+        } else {
+            setTimeout(() => {
+                setRefresh(true);
+            }, 2000);
         }
     }, [refresh]);
 
-    useEffect(() => {
-        if (game) {
-            const characterNameInTurn = game.current_turn;
-            setCharacter(characters.find((character) => character.name === characterNameInTurn));
-        }
-    }, [game]);
+    // useEffect(() => {
+    //     if (game) {
+    //         const characterNameInTurn = game.current_turn;
+    //         setCharacter(characters.find((char) => char.name === characterNameInTurn));
+    //     }
+    // }, [game]);
 
     useEffect(() => {
         const drawConnections = () => {
@@ -145,7 +149,7 @@ function GamePage() {
                 <div className="modal-body">
                     <p>{gameWinner}</p>
                     <div>
-                        <CustomButton type='primary' mode='contained' href="/">Salirse del Juego</CustomButton>
+                        <CustomButton type='primary' mode='contained' href="/" onClick={() => setGame(null)}>Salirse del Juego</CustomButton>
                     </div>
                 </div>
                 </div>

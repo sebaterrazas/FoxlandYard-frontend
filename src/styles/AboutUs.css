@@ -1,7 +1,7 @@
 .flex-box-seba {
     border-radius: 20px;
     border: 2px solid black;
-    background: #ccdde2aa;
+    background: var(--transparent-background);
     padding: 20px;
     
     /* flex-direction: column; */
@@ -34,7 +34,7 @@
 .flex-box-nacho {
     border-radius: 20px;
     border: 2px solid black;
-    background: #ccdde2aa;
+    background: var(--transparent-background);
     padding: 20px;
     
     /* flex-direction: column; */
@@ -69,7 +69,7 @@
 .flex-box-botones {
     border-radius: 20px;
     border: 2px solid black;
-    background: #e2d7ccaa;
+    background: var(--transparent-background);
     padding: 20px;
     
     /* flex-direction: column; */

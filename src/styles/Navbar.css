@@ -23,11 +23,12 @@ nav div {
 .links {
     flex: 3;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .near-links {
     display: flex;
+    margin-left: 6rem;
 }
 
 .big-logo {

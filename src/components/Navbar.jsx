@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import CustomButton from './CustomButton';
+import { AuthContext } from '../contexts/AuthContext';
 import { GameContext } from '../contexts/GameContext';
+import { CharacterContext } from '../contexts/CharacterContext';
 import "../styles/Navbar.css"
 import Logo from "../assets/images/big-logo.png"
 import FamilyMembers from './Game/FamilyMembers';
@@ -9,7 +11,10 @@ import AvailableMovements from './Game/AvailableMovements';
 import CurrentTurn from './Game/CurrentTurn';
 
 const Navbar = () => {
-  const { game } = useContext(GameContext);
+  const { user, signOut, setIsSignUp } = useContext(AuthContext);
+  const { game, setGame } = useContext(GameContext);
+  const { character } = useContext(CharacterContext);
+
 
   if (game) return (
     <nav>
@@ -19,10 +24,12 @@ const Navbar = () => {
         </a>
         </div>
         <div className="links">
+          {character && <>  
             <FamilyMembers />
             <AvailableMovements />
+          </>}
             <CurrentTurn />
-            <CustomButton type='primary' mode='contained' href="/">Salirse del Juego</CustomButton>
+            <CustomButton type='primary' mode='contained' href="/" onClick={() => setGame(null)}>Salirse del Juego</CustomButton>
         </div>
     </nav>
   );
@@ -35,14 +42,20 @@ const Navbar = () => {
         </a>
         </div>
         <div className="links">
-            <CustomButton type='secondary' mode='text' href="/games/1">Juego</CustomButton>
+          { user && <>
             <CustomButton type='secondary' mode='text' href="/games">Juegos</CustomButton>
-            <CustomButton type='secondary' mode='text' href="/auth">Reglas</CustomButton>
-            <CustomButton type='secondary' mode='text' href="/about-us">Acerca de Nosotros</CustomButton>
-            <div className="near-links">
-              <CustomButton type='primary' mode='outlined' href="/about-us">Iniciar Sesión</CustomButton>
-              <CustomButton type='primary' mode='contained' href="/about-us">Registrarse</CustomButton>
-            </div>
+          </>}
+          <CustomButton type='secondary' mode='text' href="/rules">Reglas</CustomButton>
+          <CustomButton type='secondary' mode='text' href="/about-us">Acerca de Nosotros</CustomButton>
+          <div className="near-links">
+            { !user && <>
+              <CustomButton type='primary' mode='outlined' href="/auth" onClick={() => setIsSignUp(false)}>Iniciar Sesión</CustomButton>
+              <CustomButton type='primary' mode='contained' href="/auth" onClick={() => setIsSignUp(true)}>Registrarse</CustomButton>
+            </>}
+            { user && <>
+              <CustomButton type='primary' mode='contained' href="/" onClick={signOut}>Cerrar Sesión</CustomButton>
+            </>}
+          </div>
         </div>
     </nav>
   );

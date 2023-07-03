@@ -9,7 +9,6 @@ const GameProvider = ({ children }) => {
   const [mrFox, setMrFox] = useState(null);
   const [refresh, setRefresh] = useState(false);
   const [characters_game, setCharacters_game] = useState([]);
-  // const [users, setUsers] = useState([]);
   const [gameStatus, setGameStatus] = useState(null);
   const [isGameOver, setIsGameOver] = useState(false);
 
@@ -73,8 +72,6 @@ const GameProvider = ({ children }) => {
             refresh,
             characters_game,
             setCharacters_game,
-            // users,
-            // setUsers,
             gameStatus,
             setGameStatus,
             setIsGameOver,

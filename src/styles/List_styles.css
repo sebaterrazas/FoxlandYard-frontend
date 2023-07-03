@@ -1,7 +1,7 @@
 .game-item {
     border-radius: 20px;
     border: 2px solid black;
-    background: #d4cabfe0;
+    background: var(--transparent-background);
     padding: 10px;
     margin-bottom: 15px;
     font-size: 17px;
