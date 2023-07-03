@@ -2,13 +2,16 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { GameContext } from '../../contexts/GameContext';
 import { CharacterContext } from '../../contexts/CharacterContext';
+import { AuthContext } from '../../contexts/AuthContext';
 
 import '../../styles/List_styles.css';
 
 const CharactersGameList = () => {
   const { gameId } = useParams(); // Obtener el ID del juego desde la URL
-  const { characters_game, getGameCharacters } = useContext(GameContext);
-  const { characters, listCharacters, createCharacter } = useContext(CharacterContext);
+
+  const { user } = useContext(AuthContext);
+  const { getGame } = useContext(GameContext);
+  const { characters, setCharacters, createCharacter } = useContext(CharacterContext);
 
   const [isMrFox, setIsMrFox] = useState(false)
   const [isMrBunce, setIsMrBunce] = useState(false)
@@ -16,25 +19,16 @@ const CharactersGameList = () => {
   const [isMrBoggis, setIsMrBoggis] = useState(false)
 
   useEffect(() => {    // Hay una parte de este useEffect no es es necesaria porque no la ocupamos al final
-    getGameCharacters(gameId);
-
-    const fetchData = async () => {
-      try {
-        if (characters_game.length === 0) {
-          await listCharacters(); // Obtener la lista completa de personajes si no hay personajes en el juego
-        } else {
-          await getGameCharacters(gameId); // Obtener los personajes del juego si existen
-        }
-      } catch (error) {
-        console.error(`Error al obtener los personajes del juego ${gameId}:`, error);
-      }
-    };
-
-    fetchData();
+    getGame(gameId).then((res) => {
+      console.log(res.game);
+      setCharacters(res.game.Characters);
+    });
   }, [gameId]);
 
+  console.log(characters);
+
   useEffect(() => {
-    characters_game.forEach((character) => {
+    characters.forEach((character) => {
       if (character.name === "Mr. Fox") {
         setIsMrFox(true)};
       if (character.name === "Mr. Bunce") {
@@ -44,7 +38,7 @@ const CharactersGameList = () => {
       if (character.name === "Mr. Boggis") {
         setIsMrBoggis(true)};
     })
-  }, [characters_game]);
+  }, [characters]);
 
   const handleJoinGame = async (characterName) => {
     try {
@@ -63,34 +57,36 @@ const CharactersGameList = () => {
   return (
     <div>
       <h1 className="titulo-listas">Lista de Personajes del juego N° {gameId}</h1>
-      {characters_game.map((character) => (
-          <div key={character.id} className="game-item">
-            <div className="left-section">
-              <p><span className="bold-text">Personaje:</span> {character.name}</p>
-              <p><span className="bold-text">N° del usuario que lo ocupa:</span> {character.userId}</p>
-              <p><span className="bold-text">Comida que le queda:</span> {character.food}</p>
-            </div>
-            <div className="right-section">
-              <p><span className="bold-text">Cartas de caminata que le quedan:</span> {character.walkCards}</p>
-              <p><span className="bold-text">Cartas de bicicleta que le quedan:</span> {character.bikeCards}</p>
-              <p><span className="bold-text">Cartas de auto que le quedan:</span> {character.carCards}</p>
-            </div>
+      {characters.map((character) => (
+        <div key={character.id} className="game-item">
+          <div className="left-section">
+            <p><span className="bold-text">Personaje:</span> {character.name}</p>
+            <p><span className="bold-text">Nombre del usuario que lo ocupa:</span> {character.User.username}</p>
+            <p><span className="bold-text">Comida que le queda:</span> {character.food}</p>
           </div>
-        ))}
-      <div className="game-item">  {/* Div para unirse como un personaje en caso de que no este en el juego */}
-        {!isMrFox && (
-        <button onClick={() => handleJoinGame("Mr. Fox")}> Únete como Mr. Fox </button>
-        )}
-        {!isMrBunce && (
-        <button onClick={() => handleJoinGame("Mr. Bunce")}> Únete como Mr. Bunce </button>
-        )}
-        {!isMrBean && (
-        <button onClick={() => handleJoinGame("Mr. Bean")}> Únete como Mr. Bean </button>
-        )}
-        {!isMrBoggis && (
-        <button onClick={() => handleJoinGame("Mr. Boggis")}> Únete como Mr. Boggis </button>
-        )}
-      </div>
+          <div className="right-section">
+            <p><span className="bold-text">Cartas de caminata que le quedan:</span> {character.walkCards}</p>
+            <p><span className="bold-text">Cartas de bicicleta que le quedan:</span> {character.bikeCards}</p>
+            <p><span className="bold-text">Cartas de auto que le quedan:</span> {character.carCards}</p>
+          </div>
+        </div>
+      ))}
+      {(!isMrFox || !isMrBunce || !isMrBean || !isMrBoggis) && !characters.some(char => char.userId === user.id) && (
+        <div className="game-item">  {/* Div para unirse como un personaje en caso de que no este en el juego */}
+          {!isMrFox && (
+          <button onClick={() => handleJoinGame("Mr. Fox")}> Únete como Mr. Fox </button>
+          )}
+          {!isMrBunce && (
+          <button onClick={() => handleJoinGame("Mr. Bunce")}> Únete como Mr. Bunce </button>
+          )}
+          {!isMrBean && (
+          <button onClick={() => handleJoinGame("Mr. Bean")}> Únete como Mr. Bean </button>
+          )}
+          {!isMrBoggis && (
+          <button onClick={() => handleJoinGame("Mr. Boggis")}> Únete como Mr. Boggis </button>
+          )}
+        </div>
+      )}
       {/* <div className="game-item">
         {!isMrFox && (
         <button onClick={() => {
