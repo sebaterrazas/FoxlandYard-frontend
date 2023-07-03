@@ -43,7 +43,7 @@ const CharactersGameList = () => {
   const handleJoinGame = async (characterName) => {
     try {
       // Llamar a la función createCharacter para crear la instancia de personaje
-      await createCharacter(gameId, 1, 0, characterName);      // Hardcoreado el userId e hicimos que el personaje apareciera por default en el nodo 0.
+      await createCharacter(gameId, user.id, characterName);   
       
       // Realizar cualquier acción adicional después de crear la instancia de personaje
       console.log('Se ha creado la instancia de personaje con éxito');

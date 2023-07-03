@@ -17,12 +17,11 @@ const CharacterProvider = ({ children }) => {
     }
   };
 
-  const createCharacter = async (gameId, userId, nodeId, characterName) => {
+  const createCharacter = async (gameId, userId, characterName) => {
     try {
       const response = await api.post('/characters', {
         gameId,
         userId,
-        nodeId,
         characterName,
       });
       return response.data;
