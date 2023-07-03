@@ -9,20 +9,19 @@ import '../../styles/List_styles.css';
 const CharactersGameList = () => {
   const { gameId } = useParams(); // Obtener el ID del juego desde la URL
 
-  const { user } = useContext(AuthContext);
+  const { user, token } = useContext(AuthContext);
   const { getGame } = useContext(GameContext);
   const { characters, setCharacters, createCharacter } = useContext(CharacterContext);
 
   const [game, setGame] = useState(null); // Agregamos un estado para almacenar el objeto de juego
 
-  useEffect(() => {    // Hay una parte de este useEffect no es es necesaria porque no la ocupamos al final
+  useEffect(() => {  
     getGame(gameId).then((res) => {
-      console.log(res.game);
-      setCharacters(res.game.Characters);
+      if (res.game) {
+        setCharacters(res.game.Characters);
+      }
     });
   }, [gameId]);
-
-  console.log(characters);
 
   useEffect(() => {
     characters.forEach((character) => {
