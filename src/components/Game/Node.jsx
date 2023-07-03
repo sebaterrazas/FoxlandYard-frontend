@@ -4,15 +4,25 @@ import { GameContext } from '../../contexts/GameContext';
 import { CharacterContext } from '../../contexts/CharacterContext';
 
 function Node({ id, type }) {
-    const { setRefresh } = useContext(GameContext);
-    const { character, selectedMove, moveCharacter, setSelectedMove } = useContext(CharacterContext);
+    const { setRefresh, performTurn, setGameStatus, isGameOver } = useContext(GameContext);
+    const { character, selectedMove, setSelectedMove } = useContext(CharacterContext);
 
+    if (!character) {
+        return (
+            <a className={`node node${id} ${type}`} >
+            </a>
+        );
+    }
+
+    const gameId = character.gameId;
     const characterId = character.id;
 
     const handleClick = () => {
-        moveCharacter(characterId, selectedMove, id, false).then((res) => {
-            setRefresh(true);
+        if (isGameOver) return;
+        performTurn(gameId, characterId, selectedMove, id, false).then((res) => {
             setSelectedMove(null);
+            setGameStatus(res.message)
+            setRefresh(true);
         }).catch((err) => {
             console.log(err);
         });   

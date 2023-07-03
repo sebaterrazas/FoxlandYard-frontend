@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
+import CustomButton from '../../components/CustomButton';
+import "../../styles/Form.css"
+import { useNavigate } from 'react-router-dom';
 
-const SignInSignUp = () => {
+const AuthPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-  const [isSignUp, setIsSignUp] = useState(false);
-  const { user, signIn, signUp, signOut } = useContext(AuthContext);
+  const [errorMsg, setErrorMsg] = useState(null);
 
+  const { user, signIn, signUp, isSignUp, setIsSignUp } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -22,40 +28,50 @@ const SignInSignUp = () => {
 
   const handleSignInSubmit = async (event) => {
     event.preventDefault();
-    console.log('Correo electrónico:', email, 'Contraseña:', password);
     try {
-        const success = await signIn(email, password);
-        if (success) {
-            // Aquí puedes redirigir, mostrar un mensaje, etc.
-        } else {
-            // Aquí puedes mostrar un mensaje de error, por ejemplo
-        }
+      await signIn(email, password).then((res) => {
+        setErrorMsg(res)
+      });
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
     }
   };
 
-  const handleSignUpSubmit = (event) => {
+  const handleSignUpSubmit = async (event) => {
     event.preventDefault();
-    console.log('Nombre de usuario:', username, 'Correo electrónico:', email, 'Contraseña:', password);
-    // Aquí puedes hacer la llamada a la API para registrarse
+    try {
+      await signUp(username, email, password).then((res) => {
+        setErrorMsg(res)
+      });
+  } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+  }
   };
 
+  useEffect(() => {
+    if (errorMsg === false) {
+      navigate('/');
+    }
+  }, [errorMsg]);
+
   const toggleSignInSignUp = () => {
+    setErrorMsg(null);
     setIsSignUp(!isSignUp);
   };
 
   return (
-    <div>
+    <div className={'main-content'}>
+      <section className="flex-box">
       {isSignUp ? (
         <h1>Registrarse</h1>
       ) : (
         <h1>Iniciar sesión</h1>
       )}
-      <form onSubmit={isSignUp ? handleSignUpSubmit : handleSignInSubmit}>
+      { errorMsg && <p className={'error'}>{errorMsg}</p> }
+      <form onSubmit={isSignUp ? handleSignUpSubmit : handleSignInSubmit} id="auth-form">
         {isSignUp && (
-          <div>
-            <label htmlFor="username">Nombre de usuario:</label>
+          <div className={'input-container'}>
+            <label htmlFor="username">Nombre de usuario</label>
             <input
               type="text"
               id="username"
@@ -66,8 +82,8 @@ const SignInSignUp = () => {
             />
           </div>
         )}
-        <div>
-          <label htmlFor="email">Correo electrónico:</label>
+        <div className={'input-container'}>
+          <label htmlFor="email">Correo electrónico</label>
           <input
             type="email"
             id="email"
@@ -77,8 +93,8 @@ const SignInSignUp = () => {
             required
           />
         </div>
-        <div>
-          <label htmlFor="password">Contraseña:</label>
+        <div className={'input-container'}>
+          <label htmlFor="password">Contraseña</label>
           <input
             type="password"
             id="password"
@@ -88,11 +104,13 @@ const SignInSignUp = () => {
             required
           />
         </div>
-        <button type="submit">{isSignUp ? 'Registrarse' : 'Iniciar sesión'}</button>
+        {/* <CustomButton onClick={() => document.getElementById('auth-form').submit()}>{isSignUp ? 'Registrarse' : 'Iniciar sesión'}</CustomButton> */}
+        <button type='submit' >{isSignUp ? 'Registrarse' : 'Iniciar sesión'}</button>
       </form>
-      <button onClick={toggleSignInSignUp}>{isSignUp ? 'Ir a Iniciar sesión' : 'Ir a Registrarse'}</button>
+      <CustomButton type={'text'} mode='secondary' onClick={toggleSignInSignUp}>{isSignUp ? 'Iniciar sesión' : 'Registrarse'}</CustomButton>
+      </section>
     </div>
   );
 };
 
-export default SignInSignUp;
+export default AuthPage;

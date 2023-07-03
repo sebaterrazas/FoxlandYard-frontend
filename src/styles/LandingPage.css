@@ -55,7 +55,8 @@ h1 {
     border-collapse: separate;
     width: auto;
 
-    background-color: #d4cabfe0;
+    background-color: #ccdde2aa;
+    /* background-color: var(--transparent-background); */
 
     border-radius: 20px;
     border: 2px solid black;
@@ -66,7 +67,7 @@ h1 {
     border-collapse: separate;
     width: auto;
 
-    background-color: #d4cabfe0;
+    background-color: #ccdde2aa;
 
     border-radius: 20px;
     border: 2px solid black;

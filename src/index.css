@@ -5,11 +5,13 @@
   --white: #fff;
   --black: #000;
   --success: #28a745;
+  --selected: rgb(29, 255, 9);
   --error: #dc3545;
   --walk-color: #ebdf2c;
   --bike-color: #24da27;
   --car-color: #f74545;
-  --background-color: aliceblue;;
+  --background-color: aliceblue;
+  --transparent-background: #e2d7cce9;
 }
 
 #root {

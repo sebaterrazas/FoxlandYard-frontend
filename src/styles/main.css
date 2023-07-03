@@ -36,6 +36,7 @@ body::before {
 .main-content {
     flex: 1;
     display: flex;
+    width: 90%;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -45,11 +46,12 @@ body::before {
 .flex-box {
     border-radius: 20px;
     border: 2px solid black;
-    background: #d4cabfe0;
+    background: #e2d7ccc1;
+    /* background: var(--transparent-background); */
     padding: 20px;
     
     /* flex-direction: column; */
-    width: 92%;
+    width: 70%;
     margin: 0 auto; /* Esto es para centrar la flex-box */
 
     flex-wrap: wrap;

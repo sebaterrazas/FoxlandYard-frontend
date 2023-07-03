@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Login from '../components/Login';
 import '../styles/LandingPage.css'
 
 function LandingPage() {
@@ -18,15 +17,6 @@ function LandingPage() {
           <img id="imagen2" src="../../src/assets/images/mockup_final.jpg"></img>
         </section>
       </div>
-
-        <Login />
-
-        {/* <p>Crea una cuenta!</p>
-        <form>
-            <input type="text" placeholder="Ingresa tu correo electrónico" />
-            <input type="text" placeholder="Ingresa tu futura clave" />
-            <button type="submit">Suscríbete</button>
-        </form> */}
     </div>
   );
 }

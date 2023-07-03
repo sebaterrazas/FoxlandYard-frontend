@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import LandingPage from "../views/LandingPage";
 import AboutUs from "../views/AboutUs";
-import MainPage from "../views/MainPage";
 import AuthPage from "../views/Authentication/AuthPage";
 import GamesList from "../views/Games/GamesList";
 import GamePage from "../views/Games/GamePage";
@@ -16,13 +15,12 @@ import Rules from "./Rules";
 
 function Routing() {
     return (
+      <BrowserRouter>
       <div className="container">
         <Navbar />
         <div className="main-content">
-        <BrowserRouter>
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/auth" element={<MainPage />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/rules" element={<Rules />} />
             <Route path="/auth" element={<AuthPage />} />
@@ -31,10 +29,10 @@ function Routing() {
             <Route path="/games/:gameId/characters" element={<CharactersGameList />} />
             <Route path="/characters" element={<AllCharacters />} />
           </Routes>
-        </BrowserRouter>
         </div>
         <Footer />
       </div>
+      </BrowserRouter>
     )
 }
 

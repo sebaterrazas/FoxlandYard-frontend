@@ -1,34 +1,16 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useContext} from 'react';
 
-// import { GameContext } from '../../contexts/GameContext';
 import { CharacterContext } from '../../contexts/CharacterContext';
 import MovementCard from './MovementCard';
 
 
 function AvailableMovements(props) {
-    // const { setRefresh, refresh } = useContext(GameContext);
-    const { character, setCharacter, getCharacter } = useContext(CharacterContext);
-
-    // useEffect(() => {
-    //     setRefresh(true);
-    // }, []);
-
-    // useEffect(() => {
-    //     if (refresh) {
-    //         const { characterId } = character;
-    //         getCharacter(characterId).then((res) => {
-    //             setCharacter({ characterId, ...res});
-    //         }).catch((err) => {
-    //             console.log(err);
-    //         });
-    //         setRefresh(false);
-    //     }
-    // }, [refresh]);
+    const { character } = useContext(CharacterContext);
 
     return (
-        <div className='available-movements'>
-            <div className='av-mov-title' >Tus movimientos restantes</div>
-            <div className='av-mov-content'>
+        <div className='navbar-container'>
+            <div className='container-title' >Tus movimientos restantes</div>
+            <div className='container-content'>
                 <MovementCard type={'walk'} number={character.walkCards} />
                 <MovementCard type={'bike'} number={character.bikeCards} />
                 <MovementCard type={'car'} number={character.carCards}  />
