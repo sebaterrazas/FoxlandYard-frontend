@@ -223,6 +223,6 @@
     -khtml-user-drag: none;    /* Evitar el arrastre en Konqueror */
 }
 
-.character.player img {
+.player img {
     border: var(--selected) 0.15rem solid;
 }

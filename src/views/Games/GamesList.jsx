@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState  } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { GameContext } from '../../contexts/GameContext';
 import { CharacterContext } from '../../contexts/CharacterContext';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -8,39 +10,32 @@ import '../../styles/List_styles.css';
 
 const GamesList = () => {
   const { user, token } = useContext(AuthContext);
-  const { games, listGames, createGame } = useContext(GameContext);
+  const { games, listGames, filterGames, createGame } = useContext(GameContext);
   const { characters, setCharacters, createCharacter } = useContext(CharacterContext);
-
-
+  const [filterByAvailable, setFilterByAvailable] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState('');
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    listGames();
+    filterGames(filterByAvailable);
   }, []);
+
+  useEffect(() => {
+    filterGames(filterByAvailable);
+  }, [filterByAvailable]);
 
   const handleCreateGame = async (userId, characterName) => {
     try {
-      const gameId = await createGame(userId, characterName);  // Realiza alguna acción adicional con la respuesta, si es necesario
-      window.location.reload(); // Para actualizar la página :)
-      return gameId;
+      const result = await createGame(userId, characterName);  // Realiza alguna acción adicional con la respuesta, si es necesario
+      if (result?.game) {
+        navigate(`/games/${result.game.id}`)
+        return;
+      }
     } catch (error) {
       console.error('Error al crear un juego:', error);
       return null;
-    }
-  };
-
-  const handleJoinGame = async (gameId, characterName) => {
-    try {
-      // Llamar a la función createCharacter para crear la instancia de personaje
-      await createCharacter(gameId, user.id, characterName);   
-      
-      // Realizar cualquier acción adicional después de crear la instancia de personaje
-      console.log('Se ha creado la instancia de personaje con éxito');
-      window.location.reload();
-    } catch (error) {
-      // Manejar cualquier error que ocurra
-      console.error('Error al unirse al juego:', error);
     }
   };
 
@@ -48,32 +43,17 @@ const GamesList = () => {
     setSelectedCharacter(character);
     setShowPopup(false);
 
-    const gameId = await handleCreateGame(user.id, character);
-    if (gameId) {
-      handleJoinGame(gameId, character);
-    }
+    await handleCreateGame(user.id, character);
   };
 
+  console.log('games:', games[0])
+
   return (
-    <div>
+    <div className="flex-box">
       <h1 className="titulo-listas">Lista de juegos</h1>
-      {games.map((game) => (
-        <div key={game.id} className="game-item">
-          <div className="left-section">
-            <p><span className="bold-text">N° de juego:</span> {game.id}</p> {/* Básicamente el GameId */}
-            <p><span className="bold-text">Ganador:</span> {game.winner ? game.winner : 'Aún no hay ganador'}</p>
-            <p><span className="bold-text">Jugadas restantes:</span> {game.plays_left}</p>
-          </div>
-          <div className="right-section">
-            <br></br>
-            <button className="button" onClick={() => window.location.href = `/games/${game.id}`}>Ir al juego</button>
-            <br></br>
-            <button className="button" onClick={() => window.location.href = `/games/${game.id}/characters`}>Ver personajes</button>
-          </div>
-        </div>
-      ))}
       <div className="button-container">
-        <button className="button2" onClick={() => setShowPopup(true)}>Crear un nuevo juego</button>
+        <button className="button2" onClick={() => setFilterByAvailable(!filterByAvailable)}>{ filterByAvailable ? <>Ver todos los juegos</> : <>Ver juegos disponibles</>}</button>
+        <button className="button2" onClick={() => setShowPopup(!showPopup)}>Crear un nuevo juego</button>
       </div>
 
       {showPopup && (
@@ -85,6 +65,22 @@ const GamesList = () => {
           <button onClick={() => handleCharacterSelection('Mr. Boggis')}>Mr. Boggis</button>
         </div>
       )}
+      {games.map((game) => (
+        <div key={game.id} className="game-item">
+          <div className="left-section">
+            <p><span className="bold-text">N° de juego: </span> {game.id}</p> {/* Básicamente el GameId */}
+            <p><span className="bold-text">Ganador: </span> {game.winner ? game.winner : 'Aún no hay ganador'}</p>
+            <p><span className="bold-text">Jugadores: </span> {game.Characters.length} / 4</p>
+            <p><span className="bold-text">{game.plays_left ? 'Jugadas restantes:' : 'Juego sin iniciar'} </span> {game.plays_left}</p>
+          </div>
+          <div className="right-section">
+            <br></br>
+            <button className="button" onClick={() =>navigate(`/games/${game.id}`)}>Ir al juego</button>
+            <br></br>
+            <button className="button" onClick={() => navigate(`/games/${game.id}/characters`)}>Ver personajes</button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

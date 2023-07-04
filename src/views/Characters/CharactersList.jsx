@@ -17,10 +17,12 @@ const CharactersGameList = () => {
   const [isMrBunce, setIsMrBunce] = useState(false)
   const [isMrBean, setIsMrBean] = useState(false)
   const [isMrBoggis, setIsMrBoggis] = useState(false)
+  const [isGameStarted, setIsGameStarted] = useState(false)
 
   useEffect(() => {  
     getGame(gameId).then((res) => {
       if (res.game) {
+        setIsGameStarted(res.game.plays_left !== null && res.game.winner);
         setCharacters(res.game.Characters);
       }
     });
@@ -60,7 +62,7 @@ const CharactersGameList = () => {
         <div key={character.id} className="game-item">
           <div className="left-section">
             <p><span className="bold-text">Personaje:</span> {character.name}</p>
-            <p><span className="bold-text">Nombre del usuario que lo ocupa:</span> {character.User.username}</p>
+            <p><span className="bold-text">Nombre del usuario que lo ocupa:</span> {character.User?.username}</p>
             <p><span className="bold-text">Comida que le queda:</span> {character.food}</p>
           </div>
           <div className="right-section">
@@ -70,7 +72,7 @@ const CharactersGameList = () => {
           </div>
         </div>
       ))}
-      {(!isMrFox || !isMrBunce || !isMrBean || !isMrBoggis) && !characters.some(char => char.userId === user.id) && (
+      {(!isMrFox || !isMrBunce || !isMrBean || !isMrBoggis) && !characters.some(char => char.userId === user.id) && !isGameStarted && (
         <div className="game-item">  {/* Div para unirse como un personaje en caso de que no este en el juego */}
           {!isMrFox && (
           <button onClick={() => handleJoinGame("Mr. Fox")}> Únete como Mr. Fox </button>

@@ -1,5 +1,7 @@
+import React, { useContext } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import { GameContext } from '../contexts/GameContext';
 import LandingPage from "../views/LandingPage";
 import AboutUs from "../views/AboutUs";
 import AuthPage from "../views/Authentication/AuthPage";
@@ -16,27 +18,32 @@ import Footer from "./Footer";
 import Rules from "./Rules";
 
 function Routing() {
-    return (
-      <BrowserRouter>
-      <div className="container">
-        <Navbar />
-        <div className="main-content">
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/about-us" element={<AboutUs />} />
-            <Route path="/rules" element={<Rules />} />
-            <Route path="/auth" element={<AuthPage />} />
-            <Route path="/games" element={<GamesList />} />
-            <Route path="/games/:gameId" element={<GamePage />} />
-            <Route path="/games/:gameId/characters" element={<CharactersGameList />} />
-            <Route path="/characters" element={<AllCharacters />} />
-            <Route path="/user" element={<ViewUser />} />
-          </Routes>
-        </div>
-        <Footer />
+  const { toggleAudio, audio, nextSong } = useContext(GameContext);
+  return (
+    <BrowserRouter>
+    <div className="container">
+      <Navbar />
+      <div>
+        <button onClick={toggleAudio}>{audio?.current?.paused ? 'Play' : '||' }</button>
+        <button onClick={nextSong}> {'>'} </button>
       </div>
-      </BrowserRouter>
-    )
+      <div className="main-content">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/rules" element={<Rules />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/games" element={<GamesList />} />
+          <Route path="/games/:gameId" element={<GamePage />} />
+          <Route path="/games/:gameId/characters" element={<CharactersGameList />} />
+          <Route path="/characters" element={<AllCharacters />} />
+          <Route path="/user" element={<ViewUser />} />
+        </Routes>
+      </div>
+      <Footer />
+    </div>
+    </BrowserRouter>
+  )
 }
 
 export default Routing;

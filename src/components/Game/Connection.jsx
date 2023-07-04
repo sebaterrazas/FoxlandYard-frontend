@@ -1,6 +1,9 @@
 import React from 'react';
 
 function Connection({ type, from, to }) {
+    if (!document.querySelector(`.node1`)) {
+        return null;
+    }
     const getNodePosition = (nodeId) => {
         const node = document.querySelector(`.node${nodeId}`);
         const nodeRect = node.getBoundingClientRect();

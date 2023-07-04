@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useRef } from 'react';
 
 import CustomButton from './CustomButton';
 import { AuthContext } from '../contexts/AuthContext';
@@ -15,21 +15,22 @@ const Navbar = () => {
   const { game, setGame } = useContext(GameContext);
   const { character } = useContext(CharacterContext);
 
-
   if (game) return (
     <nav>
         <div className="big-logo">
-        <a href="/">
-            <img src={Logo}></img>
-        </a>
+          <a href="/">
+              <img src={Logo}></img>
+          </a>
         </div>
         <div className="links">
-          {character && <>  
-            <FamilyMembers />
-            <AvailableMovements />
-          </>}
+          {game.plays_left && <>
+            {character && <>  
+              {/* <FamilyMembers /> */}
+              <AvailableMovements />
+            </>}
             <CurrentTurn />
-            <CustomButton type='primary' mode='contained' href="/" onClick={() => setGame(null)}>Salirse del Juego</CustomButton>
+          </>}
+          <CustomButton type='primary' mode='contained' href="/" onClick={() => setGame(null)}>Salirse del Juego</CustomButton>
         </div>
     </nav>
   );
@@ -37,9 +38,9 @@ const Navbar = () => {
   return (
     <nav>
         <div className="big-logo">
-        <a href="/">
-            <img src={Logo}></img>
-        </a>
+          <a href="/">
+              <img src={Logo}></img>
+          </a>
         </div>
         <div className="links">
           { user && <>

@@ -21,7 +21,7 @@ function Node({ id, type }) {
         if (isGameOver) return;
         performTurn(gameId, characterId, selectedMove, id, false).then((res) => {
             setSelectedMove(null);
-            setGameStatus(res.message)
+            setGameStatus(res)
             setRefresh(true);
         }).catch((err) => {
             console.log(err);

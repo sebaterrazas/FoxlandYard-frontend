@@ -21,9 +21,8 @@ nav div {
 }
 
 .links {
-    flex: 3;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
 }
 
 .near-links {

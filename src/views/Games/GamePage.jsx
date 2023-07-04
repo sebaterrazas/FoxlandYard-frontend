@@ -11,6 +11,11 @@ import { GameContext } from '../../contexts/GameContext';
 import { CharacterContext } from '../../contexts/CharacterContext';
 import { AuthContext } from '../../contexts/AuthContext';
 
+import MrFoxImage from '../../assets/images/avatars/mr-fox.png';
+import MrBeanImage from '../../assets/images/avatars/mr-bean.png';
+import MrBoggisImage from '../../assets/images/avatars/mr-boggis.png';
+import MrBunceImage from '../../assets/images/avatars/mr-bunce.png';
+
 import '../../styles/Modal.css';
 import CustomButton from '../../components/CustomButton';
 
@@ -28,9 +33,11 @@ function GamePage() {
             setRefresh, 
             refresh,
             gameStatus,
+            setGameStatus,
             setIsGameOver,
+            startGame
         } = useContext(GameContext);
-    const { setCharacter, characters, setCharacters } = useContext(CharacterContext);
+    const { setCharacter, characters, setCharacters, character } = useContext(CharacterContext);
     const { user} = useContext(AuthContext);
 
 
@@ -47,8 +54,15 @@ function GamePage() {
         setShowModal(false);
     };
 
+    useEffect(() => {
+        if (gameStatus) {
+            setShowModal(true);
+        }
+    }, [gameStatus]);
+
 
     useEffect(() => {
+        console.log('refresh', refresh);
         if (refresh) {
             getGame(gameId).then((res) => {
                 setResConnections(res.connections);
@@ -70,6 +84,7 @@ function GamePage() {
                 setNodes(nodes);
                 setMrFoxMovements(res.game.MrFoxMovements);
                 setCharacters(res.game.Characters);
+                console.log('Characters', res.game.Characters);
                 setCharactersElements(res.game.Characters.map((char) => {
                     if (char.name === 'Mr. Fox') {
                         setMrFox(char);
@@ -131,9 +146,65 @@ function GamePage() {
 
     }, [nodes, resConnections]);
 
-    useEffect(() => {
-        setRefresh(true);
-    }, []);
+    if (game?.plays_left === null) {
+        const handleStartGamePressed = async () => {
+            if (characters.length < 2 && !characters.find((char) => char.name === 'Mr. Fox')) {
+                setShowModal(true);
+                return;
+            }
+            startGame(gameId);
+        };
+        const characterInfo = (name) => {
+
+            const isPresent = characters.find((char) => char.name === name);
+            let chosen = '';
+            if (isPresent) {
+                chosen = 'chosen';
+            }
+            let characterAvatar = <></>;
+            if (name === 'Mr. Fox') characterAvatar = <img src={MrFoxImage} alt={name} />;
+            if (name === 'Mr. Bean') characterAvatar = <img src={MrBeanImage} alt={name} />;
+            if (name === 'Mr. Boggis') characterAvatar = <img src={MrBoggisImage} alt={name} />;
+            if (name === 'Mr. Bunce') characterAvatar = <img src={MrBunceImage} alt={name} />;
+
+            const player = (character && character.name === name) ? 'player' : '';
+            return (
+                <div className={`profile ${chosen} ${player} display-row`} >
+                    {characterAvatar}
+                    { isPresent && 
+                        <p>{isPresent.User.username}</p>
+                    }
+                </div>
+            );
+        }
+        return (
+            <div className='flex-box'>
+                <h3>Lobby del juego {game.id}</h3>
+                <div className='game-lobby'>
+                    <div className='display-column'>
+                        {characterInfo('Mr. Fox')}
+                        {characterInfo('Mr. Bean')}
+                        {characterInfo('Mr. Boggis')}
+                        {characterInfo('Mr. Bunce')}
+                    </div>
+                    <div className='display-column'>
+                        <CustomButton type='primary' mode='contained' onClick={handleStartGamePressed}>Comenzar Juego</CustomButton>
+                    </div>
+                </div>
+                {showModal && 
+                (<div className="modal">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h2>Jugadores insuficientes</h2>
+                        <CustomButton mode={'text'} type={'secondary'} onClick={closeModal}>X</CustomButton>
+                    </div>
+                    <div className="modal-body">
+                        <p>Deben ser más de un jugador para poder empezar la partida, y uno de ellos tiene que ser Mr. Fox</p>
+                    </div>
+                </div>
+            </div>)}
+            </div>
+    )}
 
     return (
         <div className='game-view'>
@@ -143,11 +214,11 @@ function GamePage() {
             (<div className="modal">
                 <div className="modal-content">
                 <div className="modal-header">
-                    <h2>Juego Terminado</h2>
+                    <h2>{ gameWinner ? 'Juego Terminado' : 'Movimiento inválido'}</h2>
                     <CustomButton mode={'text'} type={'secondary'} onClick={closeModal}>X</CustomButton>
                 </div>
                 <div className="modal-body">
-                    <p>{gameWinner}</p>
+                    <p>{gameWinner || gameStatus}</p>
                     <div>
                         <CustomButton type='primary' mode='contained' href="/" onClick={() => setGame(null)}>Salirse del Juego</CustomButton>
                     </div>
