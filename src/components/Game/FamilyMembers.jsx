@@ -2,9 +2,9 @@ import React, { useContext}  from 'react';
 
 import { GameContext } from '../../contexts/GameContext';
 
-import Ash from '../../assets/images/characters/Ash1.jpg'
-import Kris from '../../assets/images/characters/kris.png'
-import Kylie from '../../assets/images/characters/kylie.jpeg'
+import Ash from '../../../public/assets/images/characters/Ash1.jpg'
+import Kris from '../../../public/assets/images/characters/kris.png'
+import Kylie from '../../../public/assets/images/characters/kylie.jpeg'
 
 const FamilyMembers = (props) => {
     const { isGameOver } = useContext(GameContext);

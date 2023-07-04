@@ -11,10 +11,10 @@ import { GameContext } from '../../contexts/GameContext';
 import { CharacterContext } from '../../contexts/CharacterContext';
 import { AuthContext } from '../../contexts/AuthContext';
 
-import MrFoxImage from '../../assets/images/avatars/mr-fox.png';
-import MrBeanImage from '../../assets/images/avatars/mr-bean.png';
-import MrBoggisImage from '../../assets/images/avatars/mr-boggis.png';
-import MrBunceImage from '../../assets/images/avatars/mr-bunce.png';
+import MrFoxImage from '../../../public/assets/images/avatars/mr-fox.png';
+import MrBeanImage from '../../../public/assets/images/avatars/mr-bean.png';
+import MrBoggisImage from '../../../public/assets/images/avatars/mr-boggis.png';
+import MrBunceImage from '../../../public/assets/images/avatars/mr-bunce.png';
 
 import '../../styles/Modal.css';
 import CustomButton from '../../components/CustomButton';

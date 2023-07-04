@@ -5,7 +5,7 @@ import { AuthContext } from '../contexts/AuthContext';
 import { GameContext } from '../contexts/GameContext';
 import { CharacterContext } from '../contexts/CharacterContext';
 import "../styles/Navbar.css"
-import Logo from "../assets/images/big-logo.png"
+import Logo from "../../public/assets/images/big-logo.png"
 import FamilyMembers from './Game/FamilyMembers';
 import AvailableMovements from './Game/AvailableMovements';
 import CurrentTurn from './Game/CurrentTurn';

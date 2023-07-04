@@ -1,9 +1,9 @@
 import React, { createContext, useState, useRef, useEffect } from 'react';
 import api from '../api';
-import Kristofferson from "../assets/audios/Kristofferson.mp3";
-import DigDigging from "../assets/audios/Dig-Digging.mp3";
-import MainTheme from "../assets/audios/Main-Theme.mp3";
-import MrFoxInTheFields from "../assets/audios/Mr-Fox-In-The-Fields.mp3";
+import Kristofferson from "../../public/assets/audios/Kristofferson.mp3";
+import DigDigging from "../../public/assets/audios/Dig-Digging.mp3";
+import MainTheme from "../../public/assets/audios/Main-Theme.mp3";
+import MrFoxInTheFields from "../../public/assets/audios/Mr-Fox-In-The-Fields.mp3";
 
 const GameContext = createContext();
 

@@ -3,10 +3,10 @@ import React, { useContext, useState, useEffect } from 'react';
 import { GameContext } from '../../contexts/GameContext';
 import { CharacterContext } from '../../contexts/CharacterContext';
 
-import MrFox from '../../assets/images/avatars/mr-fox.png';
-import MrBean from '../../assets/images/avatars/mr-bean.png';
-import MrBoggis from '../../assets/images/avatars/mr-boggis.png';
-import MrBunce from '../../assets/images/avatars/mr-bunce.png';
+import MrFox from '../../../public/assets/images/avatars/mr-fox.png';
+import MrBean from '../../../public/assets/images/avatars/mr-bean.png';
+import MrBoggis from '../../../public/assets/images/avatars/mr-boggis.png';
+import MrBunce from '../../../public/assets/images/avatars/mr-bunce.png';
 
 function CurrentTurn() {
     const [playingCharacters, setPlayingCharacters] = useState([]);

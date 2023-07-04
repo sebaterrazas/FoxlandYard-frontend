@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 
 import '../../styles/MovementCard.css';
 
-import Walk from '../../assets/images/icons/walk.png'
-import Bike from '../../assets/images/icons/bike.png'
-import Car from '../../assets/images/icons/sidecar.png'
+import Walk from '../../../public/assets/images/icons/walk.png'
+import Bike from '../../../public/assets/images/icons/bike.png'
+import Car from '../../../public/assets/images/icons/sidecar.png'
 
 import { CharacterContext } from '../../contexts/CharacterContext';
 import { GameContext } from '../../contexts/GameContext';
