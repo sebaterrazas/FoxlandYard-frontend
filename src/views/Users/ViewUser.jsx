@@ -2,61 +2,83 @@ import React, { useContext, useEffect, useState } from 'react';
 import { GameContext } from '../../contexts/GameContext';
 import { CharacterContext } from '../../contexts/CharacterContext';
 import { AuthContext } from '../../contexts/AuthContext';
-import api from '../../api';
 
 import '../../styles/List_styles.css';
 
-const GamesList = () => {
-  const { user } = useContext(AuthContext);
-  const { games } = useContext(GameContext);
-  const { getCharacter } = useContext(CharacterContext);
+const UserGameList = () => {
+  // const userId = 1; // CAMBIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR (O SACAR)
 
-  const [userGames, setUserGames] = useState([]);
+  const { user, token } = useContext(AuthContext);
+  const { listGames, getGame } = useContext(GameContext);
+  const { characters, setCharacters, createCharacter, listCharacters } = useContext(CharacterContext);
 
-  const getUserCharacters = async () => {
+  useEffect(() => {
+    listCharacters();
+
+    const fetchCharacters = async () => {
+      const personajes = await characters;
+      setCharacters(personajes);
+    };
+
+    fetchCharacters();
+  }, [user.id]);
+
+  const getGameDetails = async (gameId) => {
     try {
-      const response = await api.get(`/users/${user.id}/characters`);
-      return response.data;
+      const game = await getGame(gameId);
+      console.log("JUEGO:", game);
+      return game;
     } catch (error) {
-      console.error('Error al obtener los personajes del usuario:', error);
-      return [];
+      console.log("Error al obtener los detalles del juego:", error);
+      return null;
     }
   };
 
-  useEffect(() => {
-    const fetchUserGames = async () => {
-      const userCharacters = await getUserCharacters();
-      const gameIds = userCharacters.map((character) => character.gameId);
+  const [games, setGames] = useState([]);
 
-      if (games && games.length > 0) {
-        const filteredGames = games.filter((game) => gameIds.includes(game.id));
-        setUserGames(filteredGames);
-      }
+  useEffect(() => {
+    const fetchGames = async () => {
+      const gamePromises = characters.map((character) => getGameDetails(character.gameId));
+      const games = await Promise.all(gamePromises);
+      setGames(games);
     };
 
-    fetchUserGames();
-  }, [games]);
+    fetchGames();
+  }, [characters]);
 
   return (
     <div>
-      <h1 className="titulo-listas">Lista de juegos</h1>
-      {userGames.map((game) => (
-        <div key={game.id} className="game-item">
-          <div className="left-section">
-            <p><span className="bold-text">N° de juego:</span> {game.id}</p>
-            <p><span className="bold-text">Ganador:</span> {game.winner ? game.winner : 'Aún no hay ganador'}</p>
-            <p><span className="bold-text">Jugadas restantes:</span> {game.plays_left}</p>
-          </div>
-          <div className="right-section">
-            <br></br>
-            <button className="button" onClick={() => window.location.href = `/games/${game.id}`}>Ir al juego</button>
-            <br></br>
-            <button className="button" onClick={() => window.location.href = `/games/${game.id}/characters`}>Ver personajes</button>
-          </div>
-        </div>
-      ))}
+      <h1 className="titulo-listas">¡Tu lista de juegos {user.username}!</h1>
+      {characters.map((character, index) => {
+        // if (character.userId === userId) {
+        if (character.userId === user.id) {
+          const juego = games[index];
+          
+          return (
+            <div key={character.id} className="game-item">
+              <div className="left-section">
+              {juego && (
+                <div className="inception">
+                  <p><span className="bold-text">N° de juego:</span> {juego.game.id}</p>
+                  <p><span className="bold-text">Personaje que ocupas:</span> {character.name}</p>
+                  <p><span className="bold-text">Comida que te queda:</span> {character.food}</p>
+                  <p><span className="bold-text">Ganador:</span> {juego.game.winner ? juego.game.winner : 'Aún no hay ganador'}</p>
+                  <p><span className="bold-text">Jugadas restantes:</span> {juego.game.plays_left}</p>
+                </div>
+              )}
+              </div>
+              <div className="right-section">
+                {juego && (
+                  <button className="button" onClick={() => window.location.href = `/games/${juego.game.id}`}>Ir al juego</button>
+                )}
+              </div>
+            </div>
+            );
+          }
+          return null;
+          })}
     </div>
   );
 };
 
-export default GamesList;
+export default UserGameList;

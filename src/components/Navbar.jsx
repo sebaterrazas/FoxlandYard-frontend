@@ -47,6 +47,9 @@ const Navbar = () => {
           </>}
           <CustomButton type='secondary' mode='text' href="/rules">Reglas</CustomButton>
           <CustomButton type='secondary' mode='text' href="/about-us">Acerca de Nosotros</CustomButton>
+          { user && <>
+            <CustomButton type='secondary' mode='text' href="/user">Perfil</CustomButton>
+          </>}
           <div className="near-links">
             { !user && <>
               <CustomButton type='primary' mode='outlined' href="/auth" onClick={() => setIsSignUp(false)}>Iniciar Sesión</CustomButton>
